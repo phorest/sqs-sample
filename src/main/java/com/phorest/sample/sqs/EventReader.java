@@ -16,7 +16,7 @@ public class EventReader {
     private static final Logger LOGGER = LoggerFactory.getLogger(EventReader.class);
 
     /*
-        Spring boot automatically create ObjectMapper bean if it doesn't exist and registers Joda Module with it if it's on classpath
+        Spring boot automatically creates ObjectMapper bean if it doesn't exist and registers Joda Module with it if it's on classpath
      */
     @Autowired
     private ObjectMapper objectMapper;

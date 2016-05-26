@@ -50,6 +50,6 @@ The basic steps for running the Amazon SQS sample are:
 2.  Now you can trigger sending a sample Purchase Event to the SQS queue by sending `POST` request to the endpoint: `localhost:8080/sqs-sample/test/purchaseEvent`
  i.e.: `curl -X POST localhost:8080/sqs-sample/test/purchaseEvent`
 
- That will send sample event (`src/main/resources/samples/sample-event.json) to the SQS queue.
+ That will send sample event (`src/main/resources/samples/sample-event.json`) to the SQS queue.
 
-6. In logs you should see that event was received by `PurchaseEventListener`, its content was logged, it was deserialized to the Event<PurchaseData> object and logged
+6. In logs you should see that event was received by `PurchaseEventListener`, its content was logged, it was deserialized to the `Event<PurchaseData>` object and logged

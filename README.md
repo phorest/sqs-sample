@@ -1,35 +1,55 @@
-# Amazon SQS Sample
+# Phorests SQS Events Sample
 
-This is a sample that demonstrates how to make basic requests to Amazon SQS using the AWS SDK for Java.
+This is a sample Spring Boot Java App that demonstrates how to subscribe for SQS messages using JMS API.
 
-Phorest's third pary purchase API is integrated here to let to send you messages.
+Phorest's third party purchase API is integrated here to let to send you messages.
  
-You should desearilize the message to our model(provided in seperate repository)
+## How does it work
+
+On startup it makes sure that SQS queue exist (with default name `external-events-test-queue`, it could be changed through )
 
 ## Prerequisites
 
 *   You must have a valid Amazon Web Services developer account.
-*   Requires the AWS SDK for Java. For more information on the AWS SDK for Java, see [http://aws.amazon.com/sdkforjava](http://aws.amazon.com/sdkforjava).
 *   You must be signed up to use Amazon SQS. For more information on Amazon SQS, see [http://aws.amazon.com/sqs](http://aws.amazon.com/sqs).
+*   You must hava Java 8 installed on your machine
+
+
+## Configuration
+
+Configuration is done through `src/main/resources/application.properties` file
+
+### Required
+
+* fill in your Access Key ID and Secret Access Key:
+
+  ```
+  amazon.credentials.accessKeyId=
+  amazon.credentials.secretKey=
+  ```
+
+### Optional
+
+* change AWS region (defaults to `eu-west-1`)
+  ```
+  aws.region=
+  ```
+
+* change SQS queue name (defaults to sqs-sample-events-queue)
+
+    ```
+    sqs.events-queue-name=
+    ```
 
 ## Running the Sample
 
 The basic steps for running the Amazon SQS sample are:
 
-1.  Create a credentials file in the location ~/.aws with name "credentials".
+1.  Run the `./gradlew bootRun` command at the root project level and wait until it prints: `Tomcat started on port(s): 8080 (http)`
 
-2.  Under the `default` profile fill in your Access Key ID and Secret Access Key:
+2.  Now you can trigger sending a sample Purchase Event to the SQS queue by sending `POST` request to the endpoint: `localhost:8080/sqs-sample/test/purchaseEvent`
+ i.e.: `curl -X POST localhost:8080/sqs-sample/test/purchaseEvent`
 
-  ```
-  [default]
-  aws_access_key_id =
-  aws_secret_access_key =
-  ```
+ That will send sample event (`src/main/resources/samples/sample-event.json) to the SQS queue.
 
-3.  Save the file.
-
-4.  Run the `SimpleQueueServiceSample.java` file, located in the same directory as the properties file. The sample prints information to the standard output.
-
-**NOTE:** The sample also includes an Ant build.xml file to run the sample.
-
-See the [Amazon SQS Getting Started Guide](http://docs.amazonwebservices.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/) for step-by-step instructions on running this sample.
+6. In logs you should see that event was received by `PurchaseEventListener`, its content was logged, it was deserialized to the Event<PurchaseData> object and logged

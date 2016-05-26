@@ -1,0 +1,95 @@
+{
+  "eventId": "12345",
+  "timestamp": "2016-05-26T12:00:00.000Z",
+  "type": "purchase",
+  "data": {
+    "@class": "com.phorest.events.model.PurchaseData",
+    "transactionId": "123",
+    "purchaseDateTime": "2016-05-12T12:00:00.000Z",
+    "branchId": "urn:memento:133434",
+    "businessId": "urn:memento:123213",
+    "client": {
+      "id": "",
+      "firstName": "Aaaa",
+      "lastName": "Bbbb",
+      "email": "lol@sth.com"
+    },
+    "voucherDiscount": {
+      "type": "PERCENT",
+      "value": 123.34
+    },
+    "onlineDeposit": 0,
+    "onlineDiscount": 0,
+    "staff": {
+      "id": "1234",
+      "firstName": "Stephen",
+      "lastName": "Orme"
+    },
+    "description": "foo bar",
+    "payments": [
+      {
+        "amount": 123.12,
+        "type": "CASH"
+      }
+    ],
+    "purchaseItems": [
+      {
+        "itemType": "SERVICE",
+        "purchaseType": "SALE",
+        "quantity": 1.2,
+        "id": "1234",
+        "name": "Baleyage",
+        "category": {
+          "id": "1234",
+          "name": "sth",
+          "description": ""
+        },
+        "itemPrice": {
+          "net": 123,
+          "gross": 32123.21,
+          "tax": {
+            "rate": 21,
+            "amount": 123
+          },
+          "discount": 123.12
+        },
+        "voucher": {
+          "id": "1234",
+          "serial": "2312342",
+          "issueDate": "2016-05-06T16:00:00.000Z",
+          "expiryDate": "",
+          "originalBalance": 123.22,
+          "discountedOriginalBalance": 10,
+          "voucherDiscount": {
+            "type": "PERCENT",
+            "value": 12.34
+          }
+        }
+      },
+      {
+        "itemType": "PRODUCT",
+        "quantity": 1.2,
+        "id": "1234",
+        "name": "Shampoo",
+        "category": {
+          "id": "1234",
+          "name": "sth",
+          "description": ""
+        }
+      },
+      {
+        "itemType": "COURSE",
+        "quantity": 1.2,
+        "id": "1234",
+        "name": "course name"
+      },
+      {
+        "itemType": "COURSE_SESSION",
+        "quantity": 1.2,
+        "id": "1234",
+        "name": "course name"
+      }
+    ]
+  }
+}
+
